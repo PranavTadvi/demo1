@@ -1,70 +1,80 @@
-# Getting Started with Create React App
+# ![NodeBB](public/images/logo.svg)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![Workflow](https://github.com/NodeBB/NodeBB/actions/workflows/test.yaml/badge.svg)](https://github.com/NodeBB/NodeBB/actions/workflows/test.yaml)
+[![Coverage Status](https://coveralls.io/repos/github/NodeBB/NodeBB/badge.svg?branch=master)](https://coveralls.io/github/NodeBB/NodeBB?branch=master)
+[![Code Climate](https://codeclimate.com/github/NodeBB/NodeBB/badges/gpa.svg)](https://codeclimate.com/github/NodeBB/NodeBB)
 
-## Available Scripts
+[**NodeBB Forum Software**](https://nodebb.org) is powered by Node.js and supports either Redis, MongoDB, or a PostgreSQL database. It utilizes web sockets for instant interactions and real-time notifications. NodeBB has many modern features out of the box such as social network integration and streaming discussions, while still making sure to be compatible with older browsers.
 
-In the project directory, you can run:
+Additional functionality is enabled through the use of third-party plugins.
 
-### `npm start`
+* [Demo](https://try.nodebb.org)
+* [Developer Community](http://community.nodebb.org)
+* [Documentation & Installation Instructions](http://docs.nodebb.org)
+* [Help translate NodeBB](https://www.transifex.com/projects/p/nodebb/)
+* [NodeBB Blog](http://blog.nodebb.org)
+* [Premium Hosting for NodeBB](http://www.nodebb.org/ "NodeBB")
+* Unofficial IRC community &ndash; channel `#nodebb` on Libera.chat
+* [Follow us on Twitter](http://www.twitter.com/NodeBB/ "NodeBB Twitter")
+* [Like us on Facebook](http://www.facebook.com/NodeBB/ "NodeBB Facebook")
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Screenshots
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+NodeBB's theming engine is highly flexible and does not restrict your design choices. Check out some themed installs in these screenshots below:
 
-### `npm test`
+[![](http://i.imgur.com/VCoOFyqb.png)](http://i.imgur.com/VCoOFyq.png)
+[![](http://i.imgur.com/FLOUuIqb.png)](http://i.imgur.com/FLOUuIq.png)
+[![](http://i.imgur.com/Ud1LrfIb.png)](http://i.imgur.com/Ud1LrfI.png)
+[![](http://i.imgur.com/h6yZ66sb.png)](http://i.imgur.com/h6yZ66s.png)
+[![](http://i.imgur.com/o90kVPib.png)](http://i.imgur.com/o90kVPi.png)
+[![](http://i.imgur.com/AaRRrU2b.png)](http://i.imgur.com/AaRRrU2.png)
+[![](http://i.imgur.com/LmHtPhob.png)](http://i.imgur.com/LmHtPho.png)
+[![](http://i.imgur.com/paiJPJkb.jpg)](http://i.imgur.com/paiJPJk.jpg)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Our minimalist "Persona" theme gets you going right away, no coding experience required.
 
-### `npm run build`
+[![](http://i.imgur.com/HwNEXGu.png)](http://i.imgur.com/HwNEXGu.png)
+[![](http://i.imgur.com/II1byYs.png)](http://i.imgur.com/II1byYs.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## How can I follow along/contribute?
 
-### `npm run eject`
+* If you are a developer, feel free to check out the source and submit pull requests. We also have a wide array of [plugins](http://community.nodebb.org/category/7/nodebb-plugins) which would be a great starting point for learning the codebase.
+* If you are a designer, [NodeBB needs themes](http://community.nodebb.org/category/10/nodebb-themes)! NodeBB's theming system allows extension of the base templates as well as styling via LESS or CSS. NodeBB's base theme utilizes [Bootstrap 3](http://getbootstrap.com/) but themes can choose to use a different framework altogether.
+* If you know languages other than English you can help us translate NodeBB. We use [Transifex](https://www.transifex.com/projects/p/nodebb/) for internationalization.
+* Please don't forget to **like**, **follow**, and **star our repo**! Join our growing [community](http://community.nodebb.org) to keep up to date with the latest NodeBB development.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Requirements
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+NodeBB requires the following software to be installed:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+* A version of Node.js at least 12 or greater ([installation/upgrade instructions](https://github.com/nodesource/distributions))
+* MongoDB, version 2.6 or greater **or** Redis, version 2.8.9 or greater
+* If you are using [clustering](https://docs.nodebb.org/configuring/scaling/) you need Redis installed and configured.
+* nginx, version 1.3.13 or greater (**only if** intending to use nginx to proxy requests to a NodeBB)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Installation
 
-## Learn More
+[Please refer to platform-specific installation documentation](https://docs.nodebb.org/installing/os)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Securing NodeBB
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+It is important to ensure that your NodeBB and database servers are secured. Bear these points in mind:
 
-### Code Splitting
+1. While some distributions set up Redis with a more restrictive configuration, Redis by default listens to all interfaces, which is especially dangerous when a server is open to the public. Some suggestions:
+    * Set `bind_address` to `127.0.0.1` so as to restrict access  to the local machine only
+    * Use `requirepass` to secure Redis behind a password (preferably a long one)
+    * Familiarise yourself with [Redis Security](http://redis.io/topics/security)
+2. Use `iptables` to secure your server from unintended open ports. In Ubuntu, `ufw` provides a friendlier interface to working with `iptables`.
+    * e.g. If your NodeBB is proxied, no ports should be open except 80 (and possibly 22, for SSH access)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Upgrading NodeBB
 
-### Analyzing the Bundle Size
+Detailed upgrade instructions are listed in [Upgrading NodeBB](https://docs.nodebb.org/configuring/upgrade/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## License
 
-### Making a Progressive Web App
+NodeBB is licensed under the **GNU General Public License v3 (GPL-3)** (http://www.gnu.org/copyleft/gpl.html).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Interested in a sublicense agreement for use of NodeBB in a non-free/restrictive environment? Contact us at sales@nodebb.org.
