@@ -8,7 +8,7 @@
     "username": "admin",
     "password": "admin",
     "database": "nodebb",
-    "uri": ""
+    "uri": "mongodb+srv://radmin:iUTmlc1mtPJMJchR@raresto-forum.5e2to.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
   },
   "port": "4567"
 }
