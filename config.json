@@ -1,0 +1,14 @@
+{
+  "url": "https://nodebbone.herokuapp.com/",
+  "secret": "798d3fba-c93b-444c-a661-79d9c9e0ab10",
+  "database": "mongo",
+  "mongo": {
+    "host": "127.0.0.1",
+    "port": "27017",
+    "username": "admin",
+    "password": "admin",
+    "database": "nodebb",
+    "uri": ""
+  },
+  "port": "4567"
+}
